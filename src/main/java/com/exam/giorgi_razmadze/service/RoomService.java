@@ -9,6 +9,7 @@ import com.exam.giorgi_razmadze.storage.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -23,20 +24,15 @@ public class RoomService {
                 .price(roomDTO.getPrice())
                 .code(roomDTO.getCode())
                 .hotel(HotelEntity.builder().id(roomDTO.getHotel().getId()).build())
-                .state(RoomState.AVAILABLE)
                 .build();
 
         roomRepository.save(roomEntity);
     }
 
-    public List<RoomDTO> getFreeRooms() {
-        return roomRepository.getRoomEntitiesByState(RoomState.AVAILABLE)
+    public List<RoomDTO> getFreeRooms(LocalDateTime startTime, LocalDateTime endTime) {
+        return roomRepository.getFreeRooms(startTime, endTime)
                 .stream().map(RoomMapper::toDTO).toList();
     }
 
-    public List<RoomDTO> getReservedRooms() {
-        return roomRepository.getRoomEntitiesByState(RoomState.RESERVED)
-                .stream().map(RoomMapper::toDTO).toList();
-    }
 
 }

@@ -1,8 +1,7 @@
 package com.exam.giorgi_razmadze.storage.entity;
 
 import com.exam.giorgi_razmadze.storage.enumerated.RecordState;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -12,15 +11,16 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@MappedSuperclass
 public abstract class AppEntity {
 
     @CreationTimestamp
-    protected LocalDateTime createdDate;
+    private LocalDateTime createdDate;
 
     @UpdateTimestamp
-    protected LocalDateTime lastModifiedDate;
+    private LocalDateTime lastModifiedDate;
 
     @Enumerated(EnumType.STRING)
-    protected RecordState recordState;
+    private RecordState recordState;
 
 }

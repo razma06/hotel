@@ -9,11 +9,8 @@ public class RoomMapper {
         return RoomDTO.builder()
                 .id(roomEntity.getId())
                 .code(roomEntity.getCode())
-                .state(roomEntity.getState())
                 .price(roomEntity.getPrice())
                 .hotel(HotelMapper.toDTO(roomEntity.getHotel()))
-                .bookedFrom(roomEntity.getBookedFrom())
-                .bookedTo(roomEntity.getBookedTo())
                 .build();
     }
 

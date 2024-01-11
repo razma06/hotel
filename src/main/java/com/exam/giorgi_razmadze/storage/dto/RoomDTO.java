@@ -16,14 +16,9 @@ public class RoomDTO {
 
     private String code;
 
-    private RoomState state;
-
     private int price;
 
     private HotelDTO hotel;
 
-    private LocalDateTime bookedFrom;
-
-    private LocalDateTime bookedTo;
 
 }
